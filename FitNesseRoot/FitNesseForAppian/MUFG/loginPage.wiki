@@ -1,0 +1,39 @@
+---
+Test
+---
+!define TEST_SYSTEM {slim}
+!define COMMAND_PATTERN {java -Dlog4j.debug -Dlog4j.configuration=file:\\\${automated.testing.home}\log4j.properties -cp %p %m}
+!path ${automated.testing.home}/**.jar
+             
+!*** Initialization
+
+!|script|com.appiancorp.ps.automatedtest.fixture.TempoFixture|
+|setup with|CHROME|Browser|
+|set appian url to |https://appiancoe.vuram.com/suite/sites/a-legal-entity-onboarding|
+|set appian version to|23.1|
+|set appian locale to|en_US|
+|login with username |IOT| and password|Test@2020|
+|click on menu|RECORDS|
+|click on menu|REPORTS|
+|click on menu|HOME|
+|click on button with tooltip|Click here to initiate Legal Entity Onboarding|
+|click on button|New|
+|populate field|Client Name|with|Client_1505|
+|populate field|Legal Entity Identifier|with|LEI_1505|
+|populate field|Legal Entity Name|with|LEN_1505|
+|populate field|Country|with|India|
+|wait for|3|seconds|
+|populate field|Timezone|with|IST|
+|wait for|3|seconds|
+|populate field|Client - Email Address|with|Client_1505@test.com|
+|populate field|Outgoing Email Address|with|Client_15051@test.com|
+|populate field|Contracting Entity|with|Real Capital Inc - India|
+|wait for|3|seconds|
+|populate field|Service Providers|with|Real Capital Inc - India|
+|wait for|3|seconds|
+|populate field|Launch Date|with|05/31/2023|
+|click on button|NEXT|
+|verify text |No investments available|is present|
+|click on link|Add underlying investment|
+
+***!

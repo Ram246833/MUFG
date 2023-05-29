@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<testResults>
+  <FitNesseVersion>v20221219</FitNesseVersion>
+  <rootPath>FitNesseForAppian.MUFG.variablesSetup</rootPath>
+  <result>
+    <counts>
+      <right>0</right>
+      <wrong>0</wrong>
+      <ignores>0</ignores>
+      <exceptions>3</exceptions>
+    </counts>
+    <date>2023-05-16T14:04:38+05:30</date>
+    <runTimeInMillis>10</runTimeInMillis>
+    <content>&lt;br/&gt;&lt;div class="collapsible"&gt;&lt;ul&gt;&lt;li&gt;&lt;a href='#' class='expandall'&gt;Expand&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href='#' class='collapseall'&gt;Collapse&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;
+	&lt;p class="title"&gt;Set Suite Variables&lt;/p&gt;
+	&lt;div&gt;&lt;br/&gt;&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td colspan="3" class="error"&gt;script&lt;hr/&gt; &lt;span class="fit_label"&gt;Could not find fixture: script.&lt;/span&gt;&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;$Client Name=&lt;/td&gt;
+		&lt;td&gt;get random string&lt;/td&gt;
+		&lt;td&gt;10&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;$Legal Entity Identifier=&lt;/td&gt;
+		&lt;td&gt;get random string&lt;/td&gt;
+		&lt;td&gt;10&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;$Legal Entity Name=&lt;/td&gt;
+		&lt;td&gt;get random string&lt;/td&gt;
+		&lt;td&gt;10&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;$Client - Email Address=&lt;/td&gt;
+		&lt;td&gt;get random string&lt;/td&gt;
+		&lt;td&gt;10&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;$Outgoing - Email Address=&lt;/td&gt;
+		&lt;td&gt;get random string&lt;/td&gt;
+		&lt;td&gt;10&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td class="error"&gt;set test variable&lt;hr/&gt; &lt;span class="fit_label"&gt;Could not find fixture: SetTestVariable.&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;Client Name&lt;/td&gt;
+		&lt;td&gt;with&lt;/td&gt;
+		&lt;td colspan="2"&gt;$Client Name&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;set test variable&lt;/td&gt;
+		&lt;td&gt;Legal Entity Identifier&lt;/td&gt;
+		&lt;td&gt;with&lt;/td&gt;
+		&lt;td colspan="2"&gt;$Legal Entity Identifier&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;set test variable&lt;/td&gt;
+		&lt;td&gt;Legal Entity Name&lt;/td&gt;
+		&lt;td&gt;with&lt;/td&gt;
+		&lt;td colspan="2"&gt;$Legal Entity Name&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;set test variable&lt;/td&gt;
+		&lt;td&gt;Client - Email Address&lt;/td&gt;
+		&lt;td&gt;with&lt;/td&gt;
+		&lt;td&gt;$Client - Email Address&lt;/td&gt;
+		&lt;td&gt;+"@test.com"&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;br/&gt;&lt;table&gt;
+	&lt;tr&gt;
+		&lt;td class="error"&gt;set test variable&lt;hr/&gt; &lt;span class="fit_label"&gt;Could not find fixture: SetTestVariable.&lt;/span&gt;&lt;/td&gt;
+		&lt;td&gt;start_date&lt;/td&gt;
+		&lt;td&gt;with&lt;/td&gt;
+		&lt;td&gt;2018-11-06 02:00&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;*|$quantity=|get random integer from|0|to |9|&lt;br/&gt;|$price=          |get random decimal from|1.0 |to |2.0 |with |4|*&amp;lt;test page&amp;gt;&lt;br/&gt;</content>
+    <relativePageName>variablesSetup</relativePageName>
+  </result>
+  <finalCounts>
+    <right>0</right>
+    <wrong>0</wrong>
+    <ignores>0</ignores>
+    <exceptions>1</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>10</totalRunTimeInMillis>
+</testResults>
+

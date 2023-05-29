@@ -1,0 +1,196 @@
+---
+Test
+---
+!define TEST_SYSTEM {slim}
+!define COMMAND_PATTERN {java -Dlog4j.debug -Dlog4j.configuration=file:\\\${automated.testing.home}\log4j.properties -cp %p %m}
+!path ${automated.testing.home}/**.jar
+!include -c .FitNesseForAppian.MUFG.reusableVariables
+
+!*** Set Suite Variables
+
+!|script|
+|$ClientName=|get random string|10|
+|$ValLegalEntityIdentifier=|get random string|21|
+|$ValLegalEntityName=|get random string|256|
+|$ValClientEmailAddress=|get random string|246|
+|$ValOutgoingEmailAddress=|get random string|246|
+|$ValInvestmentVehicleCode=|get random string|256|
+|$ValInvestment=|get random string|256|
+|$ValFundCode=|get random string|256|
+|$ValISIN=|get random string|13|
+|$ValFundOwner=|get random string|256|
+|$ValDueDate=|get random string|2|
+|$ValName=|get random string|256|
+|$ValEmail=|get random string|256|
+|$ValAddress=|get random string|501|
+|$ValPhoneNumberString=|get random string|51|
+|$ValPhoneNumberinteger=|get random integer from|50000|to|70000|
+|$LegalEntityIdentifier=|get random string|20|
+|$LegalEntityName=|get random string|20|
+|$ClientEmailAddress=|get random string|10|
+|$OutgoingEmailAddress=|get random string|10|
+|$InvestmentVehicleCode=|get random string|10|
+|$Investment=|get random string|10|
+|$FundCode=|get random string|10|
+|$ISIN=|get random string|12|
+|$FundOwner=|get random string|15|
+|$DueDate=|get random integer from|1|to|9|
+|$Name=|get random string|15|
+|$Email=|get random string|10|
+|$Address=|get random string|100|
+
+***!
+
+             
+!*** Initialization
+
+!|script|com.appiancorp.ps.automatedtest.fixture.TempoFixture|
+|setup with|CHROME|Browser|
+|set appian url to |https://appiancoe.vuram.com/suite/sites/a-legal-entity-onboarding|
+|set appian version to|23.1|
+|set appian locale to|en_US|
+|login with username |IOT| and password|Test@2020|
+|click on menu|RECORDS|
+|click on button with tooltip|Click here to initiate Legal Entity Onboarding|
+|click on button|New|
+|click on button|NEXT|
+|verify field|Client Name|contains validation message|A value is required|
+|verify field|Legal Entity Identifier|contains validation message|A value is required|
+|verify field|Legal Entity Name|contains validation message|A value is required|
+|verify field|Country|contains validation message|A value is required|
+|verify field|Timezone|contains validation message|A value is required|
+|verify field|Client - Email Address|contains validation message|A value is required|
+|verify field|Outgoing Email Address|contains validation message|A value is required|
+|verify field|Contracting Entity|contains validation message|A value is required|
+|verify field|Service Provider|contains validation message|A value is required|
+|verify field|Launch Date|contains validation message|A value is required|
+|wait for|3|seconds|
+|populate field|Client Name|with|$ClientName|
+|populate field|Legal Entity Identifier|with|$ValLegalEntityIdentifier|
+|populate field|Legal Entity Name|with|$ValLegalEntityName|
+|populate field|Country|with|India|
+|wait for|3|seconds|
+|populate field|Timezone|with|IST|
+|wait for|3|seconds|
+|populate field|Client - Email Address|with|$ValClientEmailAddress${emailSuffix}|
+|populate field|Outgoing Email Address|with|$ValOutgoingEmailAddress${emailSuffix}|
+|populate field|Contracting Entity|with|Real Capital Inc - India|
+|wait for|3|seconds|
+|populate field|Service Providers|with|Real Capital Inc - India|
+|wait for|3|seconds|
+|populate field|Launch Date|with|05/31/2023|
+|click on button|NEXT|
+|verify field|Legal Entity Identifier|contains validation message|The text cannot be longer than 20 characters. 21 characters received.|
+|verify field|Legal Entity Name|contains validation message|The text cannot be longer than 255 characters. 256 characters received.|
+|verify field|Client - Email Address|contains validation message|The text cannot be longer than 255 characters. 256 characters received.|
+|verify field|Outgoing Email Address|contains validation message|The text cannot be longer than 255 characters. 256 characters received.|
+|wait for|3|seconds|
+|populate field|Legal Entity Identifier|with|$LegalEntityIdentifier|
+|populate field|Legal Entity Name|with|$LegalEntityName|
+|populate field|Client - Email Address|with|$ClientEmailAddress${emailSuffix}|
+|populate field|Outgoing Email Address|with|$OutgoingEmailAddress${emailSuffix}|
+|wait for |3|seconds|
+|click on button|NEXT|
+|wait for |3|seconds|
+|verify text |No investments available|is not present|
+|click on link|Add underlying investment|
+|wait for |3|seconds|
+|click on link|Add underlying investment|
+|click on grid|[2]|column|[1]|row|[1]|
+|wait for|3|seconds|
+|click on button|NEXT|
+|verify grid|[2]|column|[2]|row|[1]|contains validation message|A value is required|
+|verify grid|[2]|column|[3]|row|[1]|contains validation message|A value is required|
+|verify grid|[2]|column|[4]|row|[1]|contains validation message|A value is required|
+|verify grid|[2]|column|[5]|row|[1]|contains validation message|A value is required|
+|verify grid|[2]|column|[6]|row|[1]|contains validation message|A value is required|
+|verify grid|[2]|column|[7]|row|[1]|contains validation message|A value is required|
+|verify grid|[2]|column|[8]|row|[1]|contains validation message|A value is required|
+|verify grid|[2]|column|[9]|row|[1]|contains validation message|A value is required|
+|verify grid|[2]|column|[2]|row|[2]|contains validation message|A value is required|
+|verify grid|[2]|column|[3]|row|[2]|contains validation message|A value is required|
+|verify grid|[2]|column|[4]|row|[2]|contains validation message|A value is required|
+|verify grid|[2]|column|[5]|row|[2]|contains validation message|A value is required|
+|verify grid|[2]|column|[6]|row|[2]|contains validation message|A value is required|
+|verify grid|[2]|column|[7]|row|[2]|contains validation message|A value is required|
+|verify grid|[2]|column|[8]|row|[2]|contains validation message|A value is required|
+|verify grid|[2]|column|[9]|row|[2]|contains validation message|A value is required|
+|wait for|3|seconds|
+|populate grid|[2]|column|[2]|row|[1]|with value|$ValInvestmentVehicleCode|
+|populate grid|[2]|column|[3]|row|[1]|with value|$ValInvestment|
+|populate grid|[2]|column|[4]|row|[1]|with value|$ValFundCode|
+|populate grid|[2]|column|[5]|row|[1]|with value|$ValISIN|
+|populate grid|[2]|column|[6]|row|[1]|with value|05/16/2023|
+|populate grid|[2]|column|[7]|row|[1]|with value|$ValFundOwner|
+|populate grid|[2]|column|[8]|row|[1]|with value|Daily|
+|populate grid|[2]|column|[9]|row|[1]|with value|$ValDueDate|
+|click on grid|[2]|column|[1]|row|[2]|
+|click on grid|[2]|column|[10]|row|[2]|
+|click on button|NEXT|
+|verify grid|[2]|column|[2]|row|[1]|contains validation message|The text cannot be longer than 255 characters. 256 characters received.|
+|verify grid|[2]|column|[3]|row|[1]|contains validation message|The text cannot be longer than 255 characters. 256 characters received.|
+|verify grid|[2]|column|[4]|row|[1]|contains validation message|The text cannot be longer than 255 characters. 256 characters received.|
+|verify grid|[2]|column|[5]|row|[1]|contains validation message|The text cannot be longer than 12 characters. 13 characters received.|
+|verify grid|[2]|column|[7]|row|[1]|contains validation message|The text cannot be longer than 255 characters. 256 characters received.|
+|verify grid|[2]|column|[9]|row|[1]|contains validation message|The value provided is not an integer.Please enter a valid Due Days|
+|wait for|3|seconds|
+|populate grid|[2]|column|[2]|row|[1]|with value|$InvestmentVehicleCode|
+|populate grid|[2]|column|[3]|row|[1]|with value|$Investment|
+|populate grid|[2]|column|[4]|row|[1]|with value|$FundCode|
+|populate grid|[2]|column|[5]|row|[1]|with value|$ISIN|
+|populate grid|[2]|column|[7]|row|[1]|with value|$FundOwner|
+|populate grid|[2]|column|[9]|row|[1]|with value|$DueDate|
+|click on button|NEXT|
+|wait for|3|seconds|
+|verify text |No contacts available|is not present|
+|click on link|Add a contact|
+|click on link|Add a contact|
+|click on grid|[2]|column|[1]|row|[1]|
+|wait for|3|seconds|
+|click on button|Initiate Onboarding|
+|click on button|YES|
+|verify grid|[2]|column|[2]|row|[1]|contains validation message|A value is required|
+|verify grid|[2]|column|[3]|row|[1]|contains validation message|A value is required|
+|verify grid|[2]|column|[4]|row|[1]|contains validation message|A value is required|
+|verify grid|[2]|column|[6]|row|[1]|contains validation message|A value is required|
+|verify grid|[2]|column|[2]|row|[2]|contains validation message|A value is required|
+|verify grid|[2]|column|[3]|row|[2]|contains validation message|A value is required|
+|verify grid|[2]|column|[4]|row|[2]|contains validation message|A value is required|
+|verify grid|[2]|column|[6]|row|[2]|contains validation message|A value is required|
+|wait for|3|seconds|
+|click on grid|[2]|column|[1]|row|[2]|
+|click on grid|[2]|column|[7]|row|[2]|
+|populate grid|[2]|column|[2]|row|[1]|with value|$ValName|
+|populate grid|[2]|column|[3]|row|[1]|with value|${ValPhoneNumber}|
+|populate grid|[2]|column|[4]|row|[1]|with value|$ValEmail|
+|populate grid|[2]|column|[5]|row|[1]|with value|$ValAddress|
+|populate grid|[2]|column|[6]|row|[1]|with value|Client|
+|verify grid|[2]|column|[2]|row|[1]|contains validation message|The text cannot be longer than 255 characters. 256 characters received.|
+|verify grid|[2]|column|[3]|row|[1]|contains validation message|The text cannot be longer than 50 characters. 51 characters received.|
+|verify grid|[2]|column|[4]|row|[1]|contains validation message|The text cannot be longer than 255 characters. 256 characters received.|
+|verify grid|[2]|column|[6]|row|[1]|contains validation message|The text cannot be longer than 500 characters. 501 characters received.|
+|wait for|3|seconds|
+|populate grid|[2]|column|[3]|row|[1]|with value|$ValPhoneNumberString|
+|verify grid|[2]|column|[3]|row|[1]|contains validation message|The text cannot be longer than 50 characters. 51 characters received.Please enter a valid phone number|
+|populate grid|[2]|column|[3]|row|[1]|with value|$ValPhoneNumberinteger|
+|verify grid|[2]|column|[3]|row|[1]|contains validation message|Please enter a valid phone number|
+|populate grid|[2]|column|[2]|row|[1]|with value|$Name|
+|populate grid|[2]|column|[3]|row|[1]|with value|${phoneNumber}|
+|populate grid|[2]|column|[4]|row|[1]|with value|$Email${emailSuffix}|
+|populate grid|[2]|column|[5]|row|[1]|with value|$Address|
+|click on button|Initiate Onboarding|
+|click on button|YES|
+|wait for |3|seconds|
+|verify text|Your Legal Entity Onboarding has been successfully Initiated|is present|
+|verify text|Reference ID:|is present|
+|click on button|AGREE|
+|wait for |3|seconds|
+|populate field|Status|with|Initiated|
+|wait for |3|seconds|
+|click on button|SEARCH|
+|wait for |3|seconds|
+|click on grid|[1]|column|[1]|row|[1]|
+|wait for |3|seconds|
+|logout|
+|tear down|
+***!

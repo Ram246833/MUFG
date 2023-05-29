@@ -1,0 +1,75 @@
+---
+Test
+---
+!define TEST_SYSTEM {slim}
+!define COMMAND_PATTERN {java -Dlog4j.debug -Dlog4j.configuration=file:\\\${automated.testing.home}\log4j.properties -cp %p %m}
+!path ${automated.testing.home}/**.jar
+!include -c .FitNesseForAppian.MUFG.reusableVariables
+
+!*** Set Suite Variables
+
+!|script|
+|$ClientName=|get random string|10|
+|$LegalEntityIdentifier=|get random string|10|
+|$LegalEntityName=|get random string|10|
+|$ClientEmailAddress=|get random string|10|
+|$OutgoingEmailAddress=|get random string|10|
+***!
+
+             
+!*** Initialization
+
+!|script|com.appiancorp.ps.automatedtest.fixture.TempoFixture|
+|setup with|CHROME|Browser|
+|set appian url to |https://appiancoe.vuram.com/suite/sites/a-legal-entity-onboarding|
+|set appian version to|23.1|
+|set appian locale to|en_US|
+|login with username |IOT| and password|Test@2020|
+|click on menu|RECORDS|
+|click on button with tooltip|Click here to initiate Legal Entity Onboarding|
+|click on button|New|
+|populate field|Client Name|with|$ClientName|
+|populate field|Legal Entity Identifier|with|$LegalEntityIdentifier|
+|populate field|Legal Entity Name|with|$LegalEntityName|
+|populate field|Country|with|India|
+|wait for|3|seconds|
+|populate field|Timezone|with|IST|
+|wait for|3|seconds|
+|populate field|Client - Email Address|with|$ClientEmailAddress${emailSuffix}|
+|populate field|Outgoing Email Address|with|$OutgoingEmailAddress${emailSuffix}|
+|populate field|Contracting Entity|with|Real Capital Inc - India|
+|wait for|3|seconds|
+|populate field|Service Providers|with|Real Capital Inc - India|
+|wait for|3|seconds|
+|populate field|Launch Date|with|05/31/2023|
+|click on button|NEXT|
+|verify text |No investments available|is present|
+|click on link|Add underlying investment|
+|click on link|Add underlying investment|
+|click on grid|[2]|column|[1]|row|[1]|
+|wait for|3|seconds|
+|populate grid|[2]|column|[2]|row|[1]|with value|1|
+|populate grid|[2]|column|[3]|row|[1]|with value|1|
+|populate grid|[2]|column|[4]|row|[1]|with value|1|
+|populate grid|[2]|column|[5]|row|[1]|with value|1|
+|populate grid|[2]|column|[6]|row|[1]|with value|05/16/2023|
+|populate grid|[2]|column|[7]|row|[1]|with value|1|
+|populate grid|[2]|column|[8]|row|[1]|with value|Daily|
+|populate grid|[2]|column|[9]|row|[1]|with value|1|
+|click on grid|[2]|column|[1]|row|[2]|
+|click on grid|[2]|column|[10]|row|[2]|
+|click on button|NEXT|
+|verify text |No contacts available|is present|
+|click on link|Add a contact|
+|click on link|Add a contact|
+|click on grid|[2]|column|[1]|row|[1]|
+|wait for|3|seconds|
+|populate grid|[2]|column|[2]|row|[1]|with value|Firstname|
+|populate grid|[2]|column|[3]|row|[1]|with value|919876543210|
+|populate grid|[2]|column|[4]|row|[1]|with value|test@test.com|
+|populate grid|[2]|column|[5]|row|[1]|with value|2nd Street|
+|populate grid|[2]|column|[6]|row|[1]|with value|Client|
+|click on grid|[2]|column|[1]|row|[2]|
+|click on grid|[2]|column|[7]|row|[2]|
+|click on button|Save & Close|
+***!

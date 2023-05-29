@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<suiteResults>
+  <FitNesseVersion>v20221219</FitNesseVersion>
+  <rootPath>FitNesseForAppian.MUFG</rootPath>
+  <pageHistoryReference>
+    <name>FitNesseForAppian.MUFG.variablesSetup</name>
+    <date>2023-05-16T14:04:25+05:30</date>
+    <pageHistoryLink>FitNesseForAppian.MUFG.variablesSetup?pageHistory&amp;resultDate=20230516140425</pageHistoryLink>
+    <counts>
+      <right>0</right>
+      <wrong>0</wrong>
+      <ignores>0</ignores>
+      <exceptions>3</exceptions>
+    </counts>
+    <runTimeInMillis>59</runTimeInMillis>
+  </pageHistoryReference>
+  <executionLog>
+    <testSystem>fit:fit.FitServer</testSystem>
+    <command>"C:\Program Files\Java\jdk1.8.0_301\bin\java" -cp C:\FitNesseForAppian\lib\fitnesse-20221219-standalone.jar fit.FitServer VURAM-2023-0039 50493 3863</command>
+    <exitCode>1</exitCode>
+    <stdOut></stdOut>
+    <stdErr></stdErr>
+    <exception>sleep interrupted</exception>
+  </executionLog>
+  <finalCounts>
+    <right>0</right>
+    <wrong>0</wrong>
+    <ignores>0</ignores>
+    <exceptions>2</exceptions>
+  </finalCounts>
+  <totalRunTimeInMillis>1609</totalRunTimeInMillis>
+</suiteResults>
+

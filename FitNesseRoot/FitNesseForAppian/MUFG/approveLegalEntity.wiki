@@ -1,0 +1,153 @@
+---
+Test
+---
+!define TEST_SYSTEM {slim}
+!define COMMAND_PATTERN {java -Dlog4j.debug -Dlog4j.configuration=file:\\\${automated.testing.home}\log4j.properties -cp %p %m}
+!path ${automated.testing.home}/**.jar
+!include -c .FitNesseForAppian.MUFG.reusableVariables
+
+!*** Set Variables
+!|script|
+|$ClientName=|get random string|20|
+|$LegalEntityIdentifier=|get random string|20|
+|$LegalEntityName=|get random string|20|
+|$ClientEmailAddress=|get random string|10|
+|$OutgoingEmailAddress=|get random string|10|
+|$InvestmentVehicleCode=|get random string|10|
+|$Investment=|get random string|10|
+|$FundCode=|get random string|10|
+|$ISIN=|get random string|12|
+|$FundOwner=|get random string|15|
+|$DueDate=|get random integer from|1|to|9|
+|$Name=|get random string|15|
+|$Email=|get random string|10|
+|$Address=|get random string|100|
+|$Comments=|get random string|50|
+***!
+
+!*** Initialization
+
+!|script|com.appiancorp.ps.automatedtest.fixture.TempoFixture|
+|setup with|CHROME|Browser|
+|set appian url to |https://appiancoe.vuram.com/suite/sites/a-legal-entity-onboarding|
+|set appian version to|23.1|
+|set appian locale to|en_US|
+|login with username |IOT| and password|Test@2020|
+|click on menu|RECORDS|
+|click on button with tooltip|Click here to initiate Legal Entity Onboarding|
+|click on button|New|
+|wait for|3|seconds|
+|populate field|Client Name|with|$ClientName|
+|populate field|Legal Entity Identifier|with|$LegalEntityIdentifier|
+|populate field|Legal Entity Name|with|$LegalEntityName|
+|wait for|3|seconds|
+|populate field|Country|with|India|
+|wait for|3|seconds|
+|populate field|Timezone|with|IST|
+|wait for|3|seconds|
+|populate field|Client - Email Address|with|$ClientEmailAddress${emailSuffix}|
+|populate field|Outgoing Email Address|with|$OutgoingEmailAddress${emailSuffix}|
+|wait for |3|seconds|
+|populate field|Contracting Entity|with|Real Capital Inc - India|
+|wait for|3|seconds|
+|populate field|Service Providers|with|Real Capital Inc - India|
+|wait for|3|seconds|
+|populate field|Launch Date|with|!today (MM/dd/yyyy)|
+|click on button|NEXT|
+|wait for|3|seconds|
+|click on link|Add underlying investment|
+|wait for |3|seconds|
+|click on grid|[2]|column|[1]|row|[1]|
+|wait for|3|seconds|
+|populate grid|[2]|column|[2]|row|[1]|with value|$InvestmentVehicleCode|
+|populate grid|[2]|column|[3]|row|[1]|with value|$Investment|
+|populate grid|[2]|column|[4]|row|[1]|with value|$FundCode|
+|populate grid|[2]|column|[5]|row|[1]|with value|$ISIN|
+|populate grid|[2]|column|[6]|row|[1]|with value|!today (MM/dd/yyyy)|
+|populate grid|[2]|column|[7]|row|[1]|with value|$FundOwner|
+|populate grid|[2]|column|[8]|row|[1]|with value|Daily|
+|populate grid|[2]|column|[9]|row|[1]|with value|$DueDate|
+|click on button|NEXT|
+|wait for|3|seconds|
+|click on link|Add a contact|
+|click on grid|[2]|column|[1]|row|[1]|
+|wait for|3|seconds|
+|populate grid|[2]|column|[2]|row|[1]|with value|$Name|
+|populate grid|[2]|column|[3]|row|[1]|with value|${phoneNumber}|
+|populate grid|[2]|column|[4]|row|[1]|with value|$Email${emailSuffix}|
+|populate grid|[2]|column|[5]|row|[1]|with value|$Address|
+|populate grid|[2]|column|[6]|row|[1]|with value|Client|
+|wait for|3|seconds|
+|click on button|Initiate Onboarding|
+|click on button|YES|
+|wait for |3|seconds|
+|verify text|Your Legal Entity Onboarding has been successfully Initiated|is present|
+|verify text|Reference ID:|is present|
+|click on button|AGREE|
+|wait for |3|seconds|
+|logout|
+|tear down|
+
+
+|script|com.appiancorp.ps.automatedtest.fixture.TempoFixture|
+|setup with|CHROME|Browser|
+|set appian url to |https://appiancoe.vuram.com/suite/sites/a-legal-entity-onboarding|
+|set appian version to|23.1|
+|set appian locale to|en_US|
+|login with username |CIT| and password|Test@2020|
+|click on menu|RECORDS|
+|wait for |3|seconds|
+|click on menu|HOME|
+|wait for |3|seconds|
+|click on radio option|Assigned|
+|populate field|Date|with value|!today (MM/dd/yyyy)|
+|wait for |3|seconds|
+|click on grid|[1]|column|[1]|row|[1]|
+|wait for |3|seconds|
+|click on button|Accept|
+|wait for |3|seconds|
+|verify field|Client Name|contains|$ClientName|
+|verify field|Legal Entity Identifier|contains|$LegalEntityIdentifier|
+|verify field|Legal Entity Name|contains|$LegalEntityName|
+|verify field|Country|contains|INDIA|
+|verify field|Timezone|contains|IST|
+|verify field|Client Email Address|contains|$ClientEmailAddress${emailSuffix}|
+|verify field|Outgoing Email Address|contains|$OutgoingEmailAddress${emailSuffix}|
+|verify field|Contracting Entity|contains|Real Capital Inc - India|
+|verify field|Service Providers|contains|Real Capital Inc - India|
+|verify field|Launch Date|contains|!today (MM/dd/yyyy)|
+|click on button|NEXT|
+|wait for |3|seconds|
+|verify grid|[1]|column|[1]|row|[1]|contains value|New|
+|verify grid|[1]|column|[2]|row|[1]|contains value|$InvestmentVehicleCode|
+|verify grid|[1]|column|[3]|row|[1]|contains value|$Investment|
+|verify grid|[1]|column|[4]|row|[1]|contains value|$FundCode|
+|verify grid|[1]|column|[5]|row|[1]|contains value|$ISIN|
+|verify grid|[1]|column|[6]|row|[1]|contains value|!today (MM/dd/yyyy)|
+|verify grid|[1]|column|[7]|row|[1]|contains value|$FundOwner|
+|verify grid|[1]|column|[8]|row|[1]|contains value|Daily|
+|verify grid|[1]|column|[9]|row|[1]|contains value|$DueDate|
+|click on button|NEXT|
+|wait for |3|seconds|
+|verify grid|[1]|column|[1]|row|[1]|contains value|New|
+|verify grid|[1]|column|[2]|row|[1]|contains value|$Name|
+|verify grid|[1]|column|[3]|row|[1]|contains value|${phoneNumber}|
+|verify grid|[1]|column|[4]|row|[1]|contains value|$Email|
+|verify grid|[1]|column|[5]|row|[1]|contains value|$Address|
+|verify grid|[1]|column|[5]|row|[1]|contains value|Client|
+|click on button|BACK|
+|verify section|Investment Details|is present|
+|click on button|BACK|
+|verify section|Client Details|is present|
+|click on button|NEXT|
+|click on button|REJECT|
+|verify field|Comments|contains validation message|A value is required|
+|click on button|SEND BACK|
+|verify field|Comments|contains validation message|A value is required|
+|populate field|Comments|with|$Comments|
+|click on button|APPROVE|
+|wait for |3|seconds|
+|logout|
+|tear down|
+
+***!
